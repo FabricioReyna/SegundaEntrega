@@ -25,14 +25,21 @@
       top: 20px;
       background: transparent; }
 
-.btn {
-  width: 100%; }
-  .btn .btn-edit {
-    padding: 10px 30px;
-    border: 1px solid black;
-    background: transparent;
-    border-radius: 20%; }
-  .btn .btn-edit:hover {
-    background: wheat;
-    font-size: 1em;
-    transition: 2s; }
+.btn .btn-edit {
+  padding: 10px 30px;
+  border: 1px solid black;
+  background: transparent;
+  border-radius: 20%; }
+
+.btn .btn-edit:hover {
+  background: wheat;
+  font-size: 1em;
+  transition: 2s; }
+
+.container .MensajeDeCompra {
+  font-size: 1em;
+  font-weight: bold;
+  color: #000;
+  text-align: justify;
+  border: 1px solid black;
+  padding: 20px; }

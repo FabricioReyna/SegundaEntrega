@@ -129,10 +129,16 @@ const btn = document.getElementById("Buton");
   if ((opcionUser = Productoselegidos)) {
     const iva = Productoselegidos.precio * 0.21
     const precios = iva + Productoselegidos.precio
-    Math.round(precios)
-    alert(
-      `El producto ${Productoselegidos.nombre} de la descripcion  ${Productoselegidos.descrpicion} y un precio de $ ${precios} fue agregada al carrito exitosamente!`
-    );
+    Math.trunc(precios)
+    let contenedor = document.createElement("div");
+    contenedor.classList.add("container")
+ 
+    contenedor.innerHTML =
+      `<p class = "MensajeDeCompra">El producto ${Productoselegidos.nombre} de la descripcion  ${Productoselegidos.descrpicion} y un precio de $ ${precios} fue agregada al carrito exitosamente!</p>`
+    ;
+    document.body.appendChild(contenedor) 
+    console.log(contenedor)
+  
 1  } else {
     alert(
       "   Lamentamos las molestias, pero el dato ingresado no corresponde a un id de los productos anteriores"
