@@ -6,4 +6,33 @@
 
 .center {
   text-align: center;
-  color: red; }
+  color: red;
+  padding: 10px; }
+
+.card-padre {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%; }
+  .card-padre .ey {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 10px;
+    background: wheat; }
+    .card-padre .ey img {
+      width: 100%;
+      position: relative;
+      top: 20px;
+      background: transparent; }
+
+.btn {
+  width: 100%; }
+  .btn .btn-edit {
+    padding: 10px 30px;
+    border: 1px solid black;
+    background: transparent;
+    border-radius: 20%; }
+  .btn .btn-edit:hover {
+    background: wheat;
+    font-size: 1em;
+    transition: 2s; }
