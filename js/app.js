@@ -40,7 +40,7 @@ card.innerHTML = `
 <div class="card-body">
   <h5 class="card-title">Yerba Playadito</h5>
   <p class="card-text">Yerba mate Playadito suave con palo 1 kg</p>
-  <p class="card-text">$ 774,75</p>
+  <p class="card-text">$ 774</p>
 
   
 
@@ -51,7 +51,7 @@ card.innerHTML = `
 <div class="card-body">
   <h5 class="card-title">Mate</h5>
   <p class="card-text">Un tradicional mate de calabaza y con una bombilla</p>
-  <p class="card-text">$ 824,75</p>
+  <p class="card-text">$ 824</p>
 
 </div>
 </div>
@@ -92,25 +92,25 @@ const btn = document.getElementById("Buton");
     0,
     "Yerba Playadito",
     "Suave con palo 1 kg",
-    "$ 774,75"
+    774
   );
   const productos1 = new Productos(
     1,
     "Mate",
     " De calabaza y con una bombilla",
-    "$ 824,75"
+     824
   );
   const productos2 = new Productos(
     2,
     "Hileret Stevia Forte",
     "Zinc 100 Sobrecitos",
-    "$  421"
+    421
   );
   const productos3 = new Productos(
     3,
     "Juego Latas Yerbera y Azucarera",
     "a ",
-    "$ 1.200"
+    1200
   );
 
   const productosMi = [productos0, productos1, productos2, productos3];
@@ -127,10 +127,13 @@ const btn = document.getElementById("Buton");
   );
 
   if ((opcionUser = Productoselegidos)) {
+    const iva = Productoselegidos.precio * 0.21
+    const precios = iva + Productoselegidos.precio
+    Math.round(precios)
     alert(
-      `El producto ${Productoselegidos.nombre} de la descripcion  ${Productoselegidos.descrpicion} y un precio de  ${Productoselegidos.precio} fue agregada al carrito exitosamente!`
+      `El producto ${Productoselegidos.nombre} de la descripcion  ${Productoselegidos.descrpicion} y un precio de $ ${precios} fue agregada al carrito exitosamente!`
     );
-  } else {
+1  } else {
     alert(
       "   Lamentamos las molestias, pero el dato ingresado no corresponde a un id de los productos anteriores"
     );
