@@ -41,7 +41,7 @@ card.innerHTML = `
   <h5 class="card-title">Yerba Playadito</h5>
   <p class="card-text">Yerba mate Playadito suave con palo 1 kg</p>
   <p class="card-text">$ 774</p>
-
+  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
   
 
 </div>
@@ -52,6 +52,7 @@ card.innerHTML = `
   <h5 class="card-title">Mate</h5>
   <p class="card-text">Un tradicional mate de calabaza y con una bombilla</p>
   <p class="card-text">$ 824</p>
+  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
 
 </div>
 </div>
@@ -61,6 +62,7 @@ card.innerHTML = `
   <h5 class="card-title">Hileret Stevia Forte</h5>
   <p class="card-text">Edulcorante Hileret Stevia Forte con Zinc 100 Sobrecitos</p>
   <p class="card-text">$ 421</p>
+  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
 
   
 </div>
@@ -70,6 +72,7 @@ card.innerHTML = `
 <div class="card-body">
   <h5 class="card-title">Juego Latas Yerbera y Azucarera</h5>
   <p class="card-text">$1.200</p>
+  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
 
 </div>
 </div>

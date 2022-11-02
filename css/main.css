@@ -25,16 +25,26 @@
       top: 20px;
       background: transparent; }
 
-.btn .btn-edit {
-  padding: 10px 30px;
-  border: 1px solid black;
-  background: transparent;
-  border-radius: 20%; }
+.btn-producto {
+  padding: 10px;
+  border: none;
+  background: #FFAD69;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px; }
 
-.btn .btn-edit:hover {
-  background: wheat;
-  font-size: 1em;
-  transition: 2s; }
+.btn {
+  text-align: center;
+  width: 100%; }
+  .btn .btn-edit {
+    padding: 10px 30px;
+    border: 1px solid black;
+    background: transparent;
+    border-radius: 20%; }
+  .btn .btn-edit:hover {
+    background: wheat;
+    font-size: 1em;
+    transition: 2s; }
 
 .container .MensajeDeCompra {
   font-size: 1em;
