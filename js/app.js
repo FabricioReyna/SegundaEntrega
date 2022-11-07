@@ -77,4 +77,14 @@ const pintarCarrito = () =>{
     fragment.appendChild(clone)
   })
   items.appendChild(fragment)
+  
+  pintarFotter()
+}
+const pintarFotter = () =>{
+  footer.innerHTML = ''
+  if(Object.keys(carrito).length === 0){
+    footer.innerHTML = `<th scope="row" colspan="5">Carrito vacio - comience a comprar! </th>`
+  } else {
+    footer.innerHTML = `<th scope="row" colspan="2">Total Productos</th>`
+  }
 }
