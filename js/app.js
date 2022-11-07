@@ -1,151 +1,195 @@
-let body = document.getElementById("body");
-let nombre = prompt(
-  "Hola bienvenido porfavor introduzca su nombre asi se a quien me dirijo"
-);
-if (nombre == "") {
-  body.innerHTML = ` <div><h1 class="center">Bienvenido Usuario</h1></div>
-        <div class="card-padre"><div class="card ey" style="width: 18rem;" id="card">
-<img src="https://jumboargentina.vtexassets.com/arquivos/ids/711224/Yerba-Mate-Playadito-Suave-X1kg-1-854539.jpg?v=637938633804770000" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <a href="#" class="btn btn-primary">Go somewhere</a>
-</div>
-</div>
-</div>
-<div class="btn">
-    <input type="button" value="Comprar" id="Buton" class="btn-edit">
-</div>`;
-} else {
-  body.innerHTML = ` <div><h1 class="center">Bienvenido ${nombre}</h1></div>
-<div class="card-padre"><div class="card ey" style="width: 18rem;" id="card">
-<img src="https://jumboargentina.vtexassets.com/arquivos/ids/711224/Yerba-Mate-Playadito-Suave-X1kg-1-854539.jpg?v=637938633804770000" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  <a href="#" class="btn btn-primary">Go somewhere</a>
-</div>
-</div>
-</div>
-<div class="btn">
-    <input type="button" value="Comprar" id="Buton" class="btn-edit">
-</div>`;
+const cards = document.getElementById("cards");
+const items = document.getElementById("items");
+const footer = document.getElementById("footer");
+const templateCard = document.getElementById("template-card").content
+const templateFooter = document.getElementById("template-footer").content
+const templateCarrito = document.getElementById("template-carrito").content
+const fragment = document.createDocumentFragment()
+let carrito = []
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchData()
+})
+cards.addEventListener("click", e =>{
+  addCarrito(e)
+})
+
+const fetchData = async() => {
+  try {
+    const res = await fetch('./js/api.json')
+    const data =  await res.json()
+    pintCard(data)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-let card = document.getElementById("card");
+const pintCard = data =>{ 
+  data.forEach(producto => {
+      templateCard.querySelector('h5').textContent = producto.nombre;
+      templateCard.querySelector('.descripcion').textContent = producto.descripcion;
+      templateCard.querySelector('.precio').textContent = producto.precio;
+      templateCard.querySelector('img').setAttribute("src", producto.imagen);
+      templateCard.querySelector(".btn-dark").dataset.id = producto.id;
+      const clone = templateCard.cloneNode(true)
+      fragment.appendChild(clone)
+  })
+  cards.appendChild(fragment)
+}
 
-card.innerHTML = `
-<div class="card-padre"><div class="card ey" style="width: 18rem;" id="card">
-<img src="https://jumboargentina.vtexassets.com/arquivos/ids/711224/Yerba-Mate-Playadito-Suave-X1kg-1-854539.jpg?v=637938633804770000" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Yerba Playadito</h5>
-  <p class="card-text">Yerba mate Playadito suave con palo 1 kg</p>
-  <p class="card-text">$ 774</p>
-  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
-  
+const addCarrito = e => {
+  // console.log(e.target)
+  // console.log(e.target.classList.contains("btn-dark"))
+  if(e.target.classList.contains("btn-dark")){
+   setCarrito(e.target.parentElement)
+  }
+  e.stopPropagation()
+}
 
-</div>
-</div>
-<div class="card ey" style="width: 18rem;" id="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Mate_en_calabaza.jpg" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Mate</h5>
-  <p class="card-text">Un tradicional mate de calabaza y con una bombilla</p>
-  <p class="card-text">$ 824</p>
-  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
-
-</div>
-</div>
-<div class="card ey" style="width: 18rem;" id="card">
-<img src="http://d3ugyf2ht6aenh.cloudfront.net/stores/001/176/840/products/en-edulcorante-hileret-stevia-forte-con-zinc-100-sobrecitos-001-5a2af6d7098b72776516402617626831-640-0.jpg" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Hileret Stevia Forte</h5>
-  <p class="card-text">Edulcorante Hileret Stevia Forte con Zinc 100 Sobrecitos</p>
-  <p class="card-text">$ 421</p>
-  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
-
-  
-</div>
-</div>
-<div class="card ey" style="width: 18rem;" id="card">
-<img src="https://d3ugyf2ht6aenh.cloudfront.net/stores/086/894/products/latas_mesa-de-trabajo-1-copia-631-34b39de37986a4853615906067264200-1024-1024.jpg" class="card-img-top" alt="...">
-<div class="card-body">
-  <h5 class="card-title">Juego Latas Yerbera y Azucarera</h5>
-  <p class="card-text">$1.200</p>
-  <input type="button" value="Añadir" id="Buton-p" class="btn-producto">
-
-</div>
-</div>
-</div>
-`;
-
-const btn = document.getElementById("Buton");
-
-      btn.addEventListener("click", function ProductosExtemis() {
-  class Productos {
-    constructor(id, nombre, descrpicion, precio) {
-      this.id = id;
-      this.nombre = nombre;
-      this.descrpicion = descrpicion;
-      this.precio = precio;
-    }
+const setCarrito = objeto =>{
+  console.log(objeto)
+  const producto = {
+    id: objeto.querySelector('.btn-dark').dataset.id,
+    nombre: objeto.querySelector('h5').textContent,
+    precio: objeto.querySelector('.precio').textContent,
+    cantidad: 1
   }
 
-  const productos0 = new Productos(
-    0,
-    "Yerba Playadito",
-    "Suave con palo 1 kg",
-    774
-  );
-  const productos1 = new Productos(
-    1,
-    "Mate",
-    " De calabaza y con una bombilla",
-     824
-  );
-  const productos2 = new Productos(
-    2,
-    "Hileret Stevia Forte",
-    "Zinc 100 Sobrecitos",
-    421
-  );
-  const productos3 = new Productos(
-    3,
-    "Juego Latas Yerbera y Azucarera",
-    "a ",
-    1200
-  );
-
-  const productosMi = [productos0, productos1, productos2, productos3];
-
-
-  let screenText = "Productos disponibles, seleccione el numero que desea: \n";
-  for (productos of productosMi) {
-    screenText += `${productos.id} - ${productos.nombre} ${productos.descrpicion}  a un precio de  ${productos.precio} \n`;
+  if(carrito.hasOwnProperty(producto.id)){
+    producto.cantidad = carrito[producto.id].cantidad + 1
   }
-  let opcionUser = parseInt(prompt(screenText));
+  carrito[producto.id] = {...producto}
+  console.log(producto)
+}
 
-  const Productoselegidos = productosMi.find(
-    (notebook) => notebook.id === opcionUser
-  );
 
-  if ((opcionUser = Productoselegidos)) {
-    const iva = Productoselegidos.precio * 0.21
-    const precios = iva + Productoselegidos.precio
-    Math.trunc(precios)
-    let contenedor = document.createElement("div");
-    contenedor.classList.add("container")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const btn = document.getElementById("Buton");
+
+//       btn.addEventListener("click", function ProductosExtemis() {
+//   class Productos {
+//     constructor(id, nombre, descrpicion, precio) {
+//       this.id = id;
+//       this.nombre = nombre;
+//       this.descrpicion = descrpicion;
+//       this.precio = precio;
+//     }
+//   }
+
+//   const productos0 = new Productos(
+//     0,
+//     "Yerba Playadito",
+//     "Suave con palo 1 kg",
+//     774
+//   );
+//   const productos1 = new Productos(
+//     1,
+//     "Mate",
+//     " De calabaza y con una bombilla",
+//      824
+//   );
+//   const productos2 = new Productos(
+//     2,
+//     "Hileret Stevia Forte",
+//     "Zinc 100 Sobrecitos",
+//     421
+//   );
+//   const productos3 = new Productos(
+//     3,
+//     "Juego Latas Yerbera y Azucarera",
+//     "a ",
+//     1200
+//   );
+
+//   const productosMi = [productos0, productos1, productos2, productos3];
+
+
+//   let screenText = "Productos disponibles, seleccione el numero que desea: \n";
+//   for (productos of productosMi) {
+//     screenText += `${productos.id} - ${productos.nombre} ${productos.descrpicion}  a un precio de  ${productos.precio} \n`;
+//   }
+//   let opcionUser = parseInt(prompt(screenText));
+
+//   const Productoselegidos = productosMi.find(
+//     (notebook) => notebook.id === opcionUser
+//   );
+
+//   if ((opcionUser = Productoselegidos)) {
+//     const iva = Productoselegidos.precio * 0.21
+//     const precios = iva + Productoselegidos.precio
+//     Math.trunc(precios)
+//     let contenedor = document.createElement("div");
+//     contenedor.classList.add("container")
  
-    contenedor.innerHTML =
-      `<p class = "MensajeDeCompra">El producto ${Productoselegidos.nombre} de la descripcion  ${Productoselegidos.descrpicion} y un precio de $ ${precios} fue agregada al carrito exitosamente!</p>`
-    ;
-    document.body.appendChild(contenedor) 
-    console.log(contenedor)
+//     contenedor.innerHTML =
+//       `<p class = "MensajeDeCompra">El producto ${Productoselegidos.nombre} de la descripcion  ${Productoselegidos.descrpicion} y un precio de $ ${precios} fue agregada al carrito exitosamente!</p>`
+//     ;
+//     document.body.appendChild(contenedor) 
+//     console.log(contenedor)
   
-1  } else {
-    alert(
-      "   Lamentamos las molestias, pero el dato ingresado no corresponde a un id de los productos anteriores"
-    );
-  }
-}
-      )
+// 1  } else {
+//     alert(
+//       "   Lamentamos las molestias, pero el dato ingresado no corresponde a un id de los productos anteriores"
+//     );
+//   }
+// }
+//       )
+
+// console.log(btn)
+
+
+// const productos1 = { id:2, productos: "Arroz"};
+// const ejson = JSON.stringify(productos1);
+// const parse = JSON.parse(ejson)
+// console.log(ejson);
+// console.log(typeof productos1);
+// console.log(typeof ejson);
+// console.log(typeof parse)
+// console.log(productos1.id)
+
+// localStorage.setItem("producto1", ejson)
+
+// const productos2 = JSON.parse(localStorage.getItem("producto1"))
+// console.log(productos2.id)
+// // localStorage.setItem('hola', productos1)

@@ -1,0 +1,31 @@
+[
+    {
+        "id": 0,
+        "nombre": "Yerba Playadito",
+        "descripcion": "Suave con palo 1 kg",
+        "precio": 774,
+        "imagen" : "https://jumboargentina.vtexassets.com/arquivos/ids/711224/Yerba-Mate-Playadito-Suave-X1kg-1-854539.jpg?v=637938633804770000"
+    },
+      {
+        "id": 1,
+        "nombre": "Mate",
+        "descripcion": " De calabaza y con una bombilla",
+         "precio": 824,
+         "imagen": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Mate_en_calabaza.jpg"
+      },
+    {
+    "id": 2,
+    "nombre": "Juego latas Yerbera y Azucarera",
+    "descripcion": " De calabaza y con una bombilla",
+    "precio": 1200,
+    "imagen": "https://d3ugyf2ht6aenh.cloudfront.net/stores/086/894/products/latas_mesa-de-trabajo-1-copia-631-34b39de37986a4853615906067264200-1024-1024.jpg"
+    },
+     {
+     "id": 3,
+     "nombre": "Hileret Stevia Forte",
+     "descripcion": "Edulcorante Hileret Stevia Forte con Zinc 100 Sobrecitos",
+      "precio": 421,
+      "imagen" : "https://ardiaprod.vtexassets.com/arquivos/ids/211935/Edulcorante-Stevia-Hileret-Forte-100-Un-_1.jpg?v=637678156901070000"
+     }
+    
+]
